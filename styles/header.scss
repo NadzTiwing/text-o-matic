@@ -1,0 +1,11 @@
+header {
+    grid-area: header;
+    background-color: $dark;
+    #app-title {
+        color: $light;
+        text-align: center;
+        margin: 1.5em;
+        text-transform: uppercase; 
+    }
+}
+
