@@ -1,2 +1,2 @@
-# text-o-matic
-Text generator with OpenAI API
+# Text-O-Matic
+Description: Text generator with OpenAI API
