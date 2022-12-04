@@ -7,7 +7,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { server } from '../../utils';
 
 const BoxSuggestor = () => {
-
     const [input, setInput] = useState("");
     const [result, setResult] = useState("");
 
@@ -17,9 +16,9 @@ const BoxSuggestor = () => {
             return;
         }
         setResult("Thinking...");
-        setTimeout(()=>{
+        const loader = setInterval(()=>{
             setResult(result => result+=".");
-        },[1000]);
+        },[1000])
 
         const response = await fetch(`${server}/api/generator`, {
             method: "POST",
@@ -31,7 +30,11 @@ const BoxSuggestor = () => {
         const data = await response.json();
         if(data.status === "success") {
             setResult(data.result);
-        } else setResult("Something wrong happened. Please try again");
+            clearInterval(loader);
+        } else {
+            setResult("Something wrong happened. Please try again");
+            clearInterval(loader);
+        }
     }
 
     return(
@@ -50,8 +53,8 @@ const BoxSuggestor = () => {
                 </InputGroup>
                 <FloatingLabel controlId="input" label="Generated Text">
                     <Form.Control
+                    className="caption-textarea"
                     as="textarea"
-                    style={{ height: '100px' }}
                     row={3}
                     value={result}
                     onChange={(evt)=>setResult(result => result =evt.target.value)}

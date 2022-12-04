@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { server } from '../../utils';
 
 const BoxChecker = () => {
-
     const [input, setInput] = useState("Enter your text");
     const [result, setResult] = useState("");
 
@@ -16,7 +15,7 @@ const BoxChecker = () => {
             return;
         }
         setResult("Checking...");
-        setTimeout(()=>{
+        const loader = setInterval(()=>{
             setResult(result => result+=".");
         },[1000])
 
@@ -30,9 +29,11 @@ const BoxChecker = () => {
         const data = await response.json();
         if(data.status === "success") {
             setResult(data.result);
-        } else setResult("Something wrong happened. Please try again");
-        
-
+            clearInterval(loader);
+        } else {
+            setResult("Something wrong happened. Please try again");
+            clearInterval(loader);
+        }
     }
 
     return(
@@ -41,8 +42,8 @@ const BoxChecker = () => {
             <Card.Body>
                 <FloatingLabel controlId="input" label="Your input">
                     <Form.Control
+                    className="checker-textarea"
                     as="textarea"
-                    style={{ height: '300px' }}
                     value={input}
                     onChange={(evt)=>setInput(input => input =evt.target.value)}
                     />
@@ -50,8 +51,8 @@ const BoxChecker = () => {
                 <Button variant="dark" className="my-3" onClick={showResult}>Check</Button>
                 <FloatingLabel controlId="input" label="Result">
                     <Form.Control
+                    className="checker-textarea"
                     as="textarea"
-                    style={{ height: '300px' }}
                     row={3}
                     value={result}
                     onChange={(evt)=>setResult(result => result =evt.target.value)}
