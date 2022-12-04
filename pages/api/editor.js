@@ -1,10 +1,6 @@
-import { Configuration, OpenAIApi } from "openai";
+import { openai } from "./../utils";
 
 export default async function handler(req, res) {
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
   const input = req.body.input;
 
   try {
@@ -13,7 +9,7 @@ export default async function handler(req, res) {
       input: input,
       instruction: "Fix the spelling mistakes",
       temperature: 0.7,
-      n: 5,
+      n: 10,
     });
     res
       .status(200)

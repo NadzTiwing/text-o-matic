@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { server } from './../utils';
 
 const BoxChecker = () => {
 
@@ -10,8 +11,16 @@ const BoxChecker = () => {
     const [result, setResult] = useState("");
 
     const showResult = async () => {
+        if(!input) {
+            alert("Please enter something.");
+            return;
+        }
         setResult("Checking...");
-        const response = await fetch(`http://localhost:3000/api/editor`, {
+        setTimeout(()=>{
+            setResult(result => result+=".");
+        },[1000])
+
+        const response = await fetch(`${server}/api/editor`, {
             method: "POST",
             body: JSON.stringify({ input }),
             headers: {
@@ -28,7 +37,7 @@ const BoxChecker = () => {
 
     return(
         <Card className="card-box">
-            <Card.Title>Caption Generator</Card.Title>
+            <Card.Title>Spell Checker</Card.Title>
             <Card.Body>
                 <FloatingLabel controlId="input" label="Your input">
                     <Form.Control
@@ -38,7 +47,7 @@ const BoxChecker = () => {
                     onChange={(evt)=>setInput(input => input =evt.target.value)}
                     />
                 </FloatingLabel>
-                <Button variant="dark" className="my-3" onClick={showResult}>Show Edited Version</Button>
+                <Button variant="dark" className="my-3" onClick={showResult}>Check</Button>
                 <FloatingLabel controlId="input" label="Result">
                     <Form.Control
                     as="textarea"

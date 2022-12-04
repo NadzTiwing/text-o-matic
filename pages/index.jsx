@@ -6,22 +6,21 @@ import BoxChecker from './components/boxChecker';
 
 export default function Home() {
   const [selected, setSelected] = useState("suggestion");
-  //console.log(data);
 
   return (
     <>
       <HTMLHead/>
       <div className="home-wrapper">
-        <header> <h4 id="app-title">Text-O-Matic</h4> </header>
+        <header> 
+          <h4 id="app-title">Text-O-Matic</h4>
+          <p>AI-Powered Text Generator</p>
+        </header>
         <article>
           <Form.Select aria-label="tool-selection" onChange={(evt) => setSelected(selected => selected=evt.target.value)}>
-            <option value="suggestion">Idea Generator</option>
+            <option value="suggestion">Caption Generator</option>
             <option value="checker">Spell Checker</option>
           </Form.Select>
-          {selected === "suggestion" ?
-          <BoxSuggestor/> : 
-          <BoxChecker/>
-          }
+          { selected === "suggestion" ? <BoxSuggestor/> : <BoxChecker/> }
         </article>
       </div>
     </>

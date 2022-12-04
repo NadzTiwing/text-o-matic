@@ -9,25 +9,5 @@ article {
     .card-title {
         padding: 0.5em;
         text-align: center;
-    }
-    .card-body {
-        .input-section {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            .event-input {
-                width: 100vw;
-            }
-            .generate-btn {
-                height: 7.5vh;
-            }
-        }
     }       
-}
-
-//for mobile and tablet screen version
-@media (max-width: 768px ) {
- .card-box {
-    width: 250px !important;
- }
 }

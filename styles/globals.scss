@@ -7,12 +7,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: $dark-blue;
 }
-
-// a {
-//   color: inherit;
-//   text-decoration: none;
-// }
 
 * {
   box-sizing: border-box;
@@ -30,12 +26,19 @@ body {
     "content";
 }
 
-//for mobile and tablet screen version
-// @media (max-width: 768px ) {
-//   .home-wrapper {
-//     grid-template-columns: 12fr;
-//     grid-template-areas:
-//       "sidebar"
-//       "content";
-//   }
-// }
+//for tablet and mobile screen size
+@media (max-width: 768px ) {
+  .home-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "content";
+  }
+}
+
+//for mobile screen size
+@media (max-width: 425px ) {
+  article {
+    margin: 1em;
+  }
+}
