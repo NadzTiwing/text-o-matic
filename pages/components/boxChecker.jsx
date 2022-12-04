@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { server } from './../utils';
+import { server } from '../../utils';
 
 const BoxChecker = () => {
 

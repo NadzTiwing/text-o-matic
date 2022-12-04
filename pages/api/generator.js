@@ -1,4 +1,4 @@
-import { generatePrompt, openai } from "./../utils";
+import { generatePrompt, openai } from "../../utils";
 
 export default async function handler(req, res) {
   const input = req.body.input;
