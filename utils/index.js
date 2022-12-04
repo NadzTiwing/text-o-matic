@@ -4,7 +4,10 @@ const configuration = new Configuration({
 });
 export const openai = new OpenAIApi(configuration);
 
-export const server = "http://localhost:3000";
+export const server =
+  process.env.NODE_ENV === "production"
+    ? "https://textomatic.vercel.app"
+    : "http://localhost:3000";
 
 export function generatePrompt(event) {
   return `Suggest a good caption for the ${event}
